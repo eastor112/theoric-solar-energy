@@ -1,4 +1,6 @@
 import numpy as np
+import matplotlib.pyplot as plt
+import csv
 from energ_tubo import get_pipe_energy
 
 # DATOS GEOESPACIALES
@@ -61,7 +63,11 @@ energia_diaria_col = energia_diaria.reshape(-1, 1)
 
 energia_anual = np.sum(energia_diaria)  # Valor total de energia anual aprovechada en esa condición
 
-import matplotlib.pyplot as plt
+with open('energia_anual.csv', mode='w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(['Dia', 'Energia Diaria [kW-h]'])  # Escribir encabezados
+    for dia, energia_diaria in zip(dia_col, energia_diaria_col):
+        writer.writerow([dia[0], energia_diaria[0]])
 
 plt.figure(1)
 plt.plot(dia_col, energia_diaria_col)
