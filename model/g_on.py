@@ -15,3 +15,6 @@ def extraterrestrial_radiation(n):
     extraterrestrial_radiation = G_sc * (1 + 0.033 * np.cos(np.deg2rad(360 * n / 365)))  # Extraterrestrial Radiation [W/m2] (Duffie & Beckam, 2020)
 
     return extraterrestrial_radiation
+
+if __name__ == '__main__':
+    print(extraterrestrial_radiation(10))

@@ -23,3 +23,7 @@ def diffuse_radiation_shape_function(D_int, D_ext, S_sep):
     ) / np.pi  # Shape function for diffuse radiation
 
     return diffuse_radiation_shape_function
+
+
+if __name__ == '__main__':
+    print(diffuse_radiation_shape_function(0.5, 0.5, 10))

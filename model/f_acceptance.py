@@ -26,3 +26,7 @@ def acceptance_function(D_int, D_ext, S_sep, ang_OMEGA):
         acceptance_function = 0
 
     return acceptance_function
+
+
+if __name__ == '__main__':
+    print(acceptance_function(0.5, 0.5, 0.5, 10))

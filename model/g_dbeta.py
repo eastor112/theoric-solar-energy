@@ -14,3 +14,6 @@ def diffuse_radiation_inclined_surface(Gd, inclinacion):
     diffuse_radiation_inclined_surface = 0.5 * (1 + np.cos(np.deg2rad(inclinacion))) * Gd  # Diffuse radiation received by an inclined surface [W/m2] (Tang, 2009)
 
     return diffuse_radiation_inclined_surface
+
+if __name__ == '__main__':
+    print(diffuse_radiation_inclined_surface(10,  3))

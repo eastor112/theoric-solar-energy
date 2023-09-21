@@ -12,3 +12,6 @@ def diffuse_radiation_horizontal(Go, tau_d):
     diffuse_radiation_horizontal = Go * tau_d  # Diffuse radiation on a horizontal surface [W/m2] (Duffie & Beckam, 2020)
 
     return diffuse_radiation_horizontal
+
+if __name__ == '__main__':
+    print(diffuse_radiation_horizontal(10,  3))
