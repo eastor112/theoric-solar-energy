@@ -15,6 +15,7 @@ def get_pipe_energy(
   s_sep,
   l_tubo
 ):
+
   # CALCULOS PUNTUALES INSTANTÁNEOS
   # ===============================
   gon = m.extraterrestrial_radiation(n)
@@ -22,6 +23,7 @@ def get_pipe_energy(
   ang_omega_s = m.sunset_hour_angle(latitud_local, ang_delta)
   hora_aparec_sol = m.sunrise(ang_omega_s)
   hora_puesta_sol = m.sunset(ang_omega_s)
+
 
   # CALCULOS ANGULARES HORARIOS (manteniendo desde "hora_aparec_sol" hasta "hora_puesta_sol")
   # ==========================
@@ -32,18 +34,20 @@ def get_pipe_energy(
   ang_theta_z = np.zeros(nn)
 
   for i in range(nn):
-    hora_sol[i] = hora_aparec_sol + (hora_puesta_sol - hora_aparec_sol) / nn * (i - 1)
+    hora_sol[i] = hora_aparec_sol + (hora_puesta_sol - hora_aparec_sol) / nn * (i)
     hora_std[i] = m.standard_time(n, hora_sol[i], longitud_local)
     ang_omega[i] = m.hour_angle(hora_sol[i])
     ang_theta[i] = m.incidence_angle(ang_delta, latitud_local, inclinacion, azimuth, ang_omega[i])
     ang_theta_z[i] = m.zenith_angle(ang_delta, latitud_local, azimuth, ang_omega[i])
 
+
   # CALCULO DE LA RADIACION HORARIA EXTRATERRESTRE HORIZONTAL (en el n dia) [W/m2]
   # ========================================================
-  Go_m = np.zeros(nn)
+  go_m = np.zeros(nn)
 
   for i in range(nn):
-      Go_m[i] = m.extraterrestrial_horizontal_radiation(gon, ang_theta[i])
+      go_m[i] = m.extraterrestrial_horizontal_radiation(gon, ang_theta[i])
+
 
   # ESTIMACION DE LA RADIACION HORARIA DE HAZ Y DIFUSA EN CIELO DESPEJADO EN DIRECCION DEL SOL G_BEAM_n(Duffie, 2023)
   # ==============================================================================
@@ -60,7 +64,8 @@ def get_pipe_energy(
     g_oo[i] = m.extraterrestrial_horizontal_radiation(gon, ang_theta_z[i])
     g_difus[i] = m.diffuse_radiation_horizontal(g_oo[i], tau_dif[i])
 
-  F_forma = m.diffuse_radiation_shape_function(d_int, d_ext, s_sep)
+  f_forma = m.diffuse_radiation_shape_function(d_int, d_ext, s_sep)
+
 
   # CALCULO DE LAS POTENCIAS HORARIAS QUE INCIDEN SOBRE UN TUBO AL VACIO [W] (Tang, 2009)
   # =========================================================================
@@ -80,12 +85,17 @@ def get_pipe_energy(
   for i in range(nn):
     nx[i], ny[i], nz[i] = m.sun_position(ang_delta, latitud_local, ang_omega[i])
     nnx[i], nny[i], nnz[i] = m.sun_position_prima(nx[i], ny[i], nz[i], inclinacion, azimuth)
+    angulo_omega[i] = m.omega_angle(nnx[i], nny[i])
     ang_theta_t[i] = np.degrees(math.acos(math.sqrt(nnx[i]**2 + nny[i]**2)))
     func_accep[i] = m.acceptance_function(d_int, d_ext, s_sep, angulo_omega[i])
     potencia_haz_1t[i] = m.direct_radiant_power(g_beam_n[i], d_int, l_tubo, ang_theta_t[i], func_accep[i])
     g_difus_beta[i] = m.diffuse_radiation_inclined_surface(g_difus[i], inclinacion)
-    potencia_difus_1t[i] = m.diffuse_radiant_power(g_difus_beta[i], d_int, l_tubo, F_forma)
+    potencia_difus_1t[i] = m.diffuse_radiant_power(g_difus_beta[i], d_int, l_tubo, f_forma)
 
   potencia_total_1t = potencia_haz_1t + potencia_difus_1t
 
-  return np.trapz(hora_std, potencia_total_1t) / 1000
+  print('TEST: ', np.trapz(hora_std, potencia_total_1t) / 1000)
+  print(hora_std)
+  print(potencia_total_1t)
+
+  return np.trapz(potencia_total_1t, hora_std) / 1000

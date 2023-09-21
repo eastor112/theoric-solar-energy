@@ -1,6 +1,6 @@
 import numpy as np
 
-def acceptance_function(D_int, D_ext, S_sep, ang_OMEGA):
+def acceptance_function(D_int, D_ext, S_sep, ang_omega):
     """
     Calculate the acceptance function between tube spacing.
 
@@ -18,10 +18,10 @@ def acceptance_function(D_int, D_ext, S_sep, ang_OMEGA):
     OMEGA_1 = np.degrees(np.arccos((D_int - D_ext) / (2 * S_sep)))  # Smaller critical angle [deg]
 
     # Find the acceptance function
-    if ang_OMEGA <= OMEGA_0:
+    if ang_omega <= OMEGA_0:
         acceptance_function = 1
-    elif OMEGA_0 < ang_OMEGA <= OMEGA_1:
-        acceptance_function = (S_sep / D_int) * np.cos(np.radians(ang_OMEGA)) + 0.5 * (1 - (D_ext / D_int))
+    elif OMEGA_0 < ang_omega <= OMEGA_1:
+        acceptance_function = (S_sep / D_int) * np.cos(np.radians(ang_omega)) + 0.5 * (1 - (D_ext / D_int))
     else:
         acceptance_function = 0
 
