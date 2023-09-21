@@ -25,3 +25,6 @@ def sun_position(ang_delta, latitud_local, ang_omega):
     nz = -np.cos(ang_delta_rad) * np.sin(latitud_local_rad) * np.cos(ang_omega_rad) + np.sin(ang_delta_rad) * np.cos(latitud_local_rad)
 
     return nx, ny, nz
+
+if __name__ == '__main__':
+    print(sun_position(50, 8, 20))

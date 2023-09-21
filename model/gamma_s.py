@@ -1,4 +1,5 @@
 import numpy as np
+from model.utils import acosd
 
 def solar_azimuth_angle(zenith_angle, local_latitude, delta_angle, omega_angle):
     """
@@ -22,14 +23,10 @@ def solar_azimuth_angle(zenith_angle, local_latitude, delta_angle, omega_angle):
         np.sin(zenith_angle_rad) * np.cos(delta_angle_rad)
     )
 
-    print(expression)
-    solar_azimuth_angle_rad = np.arccos(expression)
+    arccos_dec = acosd(expression)
+    solar_azimuth_angle = np.sign(omega_angle_rad) * np.abs(arccos_dec)
 
-    print( np.abs(solar_azimuth_angle_rad)
-)
-    solar_azimuth_angle = np.sign(omega_angle_rad) * np.abs(solar_azimuth_angle_rad)
-
-    return np.degrees(solar_azimuth_angle)
+    return solar_azimuth_angle
 
 
 if __name__ == '__main__':

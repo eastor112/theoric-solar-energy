@@ -21,7 +21,11 @@ def extraterrestrial_irradiance_hourly(Gon, latitud_local, ang_delta, ang_omega_
 
     extraterrestrial_irradiance_hourly = (12 * 3600 / np.pi) * Gon * (
         np.cos(latitud_local_rad) * np.cos(ang_delta_rad) * (np.sin(ang_omega_f_rad) - np.sin(ang_omega_o_rad)) +
-        (np.pi * (ang_omega_f_rad - ang_omega_o_rad) / 180) * np.sin(latitud_local_rad) * np.sin(ang_delta_rad)
-    )  # Hourly extraterrestrial horizontal irradiance [J/m2 hour]
+        (ang_omega_f_rad - ang_omega_o_rad) * np.sin(latitud_local_rad) * np.sin(ang_delta_rad)
+    )
 
     return extraterrestrial_irradiance_hourly
+
+
+if __name__ == '__main__':
+    print(extraterrestrial_irradiance_hourly(30, 90, 50, 70, 20))

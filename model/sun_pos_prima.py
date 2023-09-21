@@ -26,3 +26,6 @@ def sun_position_prima(n_x, n_y, n_z, inclination, azimuth):
     nnz = n_x * np.sin(inclination_rad) + (n_y * np.sin(azimuth_rad) + n_z * np.cos(azimuth_rad)) * np.cos(inclination_rad)
 
     return nnx, nny, nnz
+
+if __name__ == '__main__':
+    print(sun_position_prima(50, 8, 2, 23, 12))

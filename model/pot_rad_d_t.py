@@ -1,6 +1,6 @@
 import numpy as np
 
-def diffuse_radiant_power(Gdbeta, D_int, L_tubo, F_form):
+def diffuse_radiant_power(g_d_beta, d_int, l_tubo, f_form):
     """
     Calculate the diffuse radiant power in 1 vacuum tube [W].
 
@@ -13,6 +13,9 @@ def diffuse_radiant_power(Gdbeta, D_int, L_tubo, F_form):
     Returns:
     - radiant_power_diffuse (float): Diffuse radiant power in 1 vacuum tube [W].
     """
-    radiant_power_diffuse = D_int * L_tubo * np.pi * Gdbeta * F_form  # Radiant power of diffuse in 1 vacuum tube [W]
+    radiant_power_diffuse = d_int * l_tubo * np.pi * g_d_beta * f_form
 
     return radiant_power_diffuse
+
+if __name__ == '__main__':
+    print(diffuse_radiant_power(50, 0.3, 2, 60))

@@ -8,6 +8,8 @@ def sunrise(omega_s):
     Returns:
     - solar_time_sunrise (float): Solar time of sunrise (in decimal format).
     """
-    solar_time_sunrise = 12 - (omega_s / 15)  # Provides the solar time when the sun rises above the horizon.
-
+    solar_time_sunrise = 12 - (omega_s / 15)
     return solar_time_sunrise
+
+if __name__ == '__main__':
+    print(sunrise(50))

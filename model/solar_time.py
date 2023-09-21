@@ -24,3 +24,7 @@ def solar_time(n, standard_hour, standard_minute, local_longitude):
     solar_time = standard_time + 4 * (standard_longitude - local_longitude) / 60 + E / 60  # Solar time expressed in decimal hours
 
     return solar_time
+
+
+if __name__ == '__main__':
+    print(solar_time(50, 8, 2, 60))

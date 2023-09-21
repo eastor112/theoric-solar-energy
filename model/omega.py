@@ -11,3 +11,6 @@ def hour_angle(solar_time):
     hour_angle = 15 * (solar_time - 12)  # Provides the hour angle [degrees]
 
     return hour_angle
+
+if __name__ == '__main__':
+    print(hour_angle(56))

@@ -11,3 +11,6 @@ def sunset(omega_s):
     solar_time_sunset = 12 + (omega_s / 15)  # Provides the solar time when the sun sets below the horizon.
 
     return solar_time_sunset
+
+if __name__ == '__main__':
+    print(sunset(50))

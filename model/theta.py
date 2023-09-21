@@ -35,3 +35,6 @@ def incidence_angle(delta, phi, beta, gamma, omega):
     incidence_angle = np.rad2deg(incidence_angle_rad)
 
     return incidence_angle
+
+if __name__ == '__main__':
+    print(incidence_angle(50, 70, 20, 40, 50))

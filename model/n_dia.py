@@ -1,5 +1,3 @@
-import datetime
-
 def day_number(dia, mes):
     """
     Calculate the n-th day of the year.
@@ -11,9 +9,10 @@ def day_number(dia, mes):
     Returns:
     - day_number (int): The n-th day of the year.
     """
-    date = datetime.date(1, mes, dia)
-    end_of_year = datetime.date(1, 12, 31)
+    dias_por_mes = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-    day_number = (date - end_of_year).days  # The n-th day of the year for a non-leap year
-
+    day_number = sum(dias_por_mes[:mes]) + dia
     return day_number
+
+if __name__ == '__main__':
+    print(day_number(12, 2))

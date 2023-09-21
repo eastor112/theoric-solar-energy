@@ -14,3 +14,7 @@ def sunset_hour_angle(local_latitude, delta_angle):
     sunset_hour_angle = np.arccos(-np.tan(np.deg2rad(local_latitude)) * np.tan(np.deg2rad(delta_angle)))  # Provides the hour angle at sunset [degrees]
 
     return np.degrees(sunset_hour_angle)
+
+
+if __name__ == '__main__':
+    print(sunset_hour_angle(12, 56))

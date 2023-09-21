@@ -11,3 +11,6 @@ def diffuse_transmissivity(tau_b):
     diffuse_transmissivity = 0.271 - 0.294 * tau_b  # Diffuse transmissivity of the atmosphere
 
     return diffuse_transmissivity
+
+if __name__ == '__main__':
+    print(diffuse_transmissivity(50))

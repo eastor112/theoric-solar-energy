@@ -25,3 +25,6 @@ def zenith_angle(delta, phi, gamma, omega):
     zenith_angle = np.rad2deg(zenith_angle_rad)
 
     return zenith_angle
+
+if __name__ == '__main__':
+    print(zenith_angle(50, 69, 23, 43))

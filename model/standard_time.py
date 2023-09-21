@@ -22,3 +22,6 @@ def standard_time(n, solar_time, local_longitude):
     tiempo_estandar = solar_time - 4 * (standard_longitude - local_longitude) / 60 - E / 60
 
     return tiempo_estandar
+
+if __name__ == '__main__':
+    print(standard_time(50, 8, 2))

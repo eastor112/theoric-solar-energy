@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def daily_extraterrestrial_irradiance(g_on, latitud_local, ang_delta, ang_omega_s):
     """
     Calculate the daily extraterrestrial horizontal irradiance [J/m2 day].
@@ -19,7 +20,13 @@ def daily_extraterrestrial_irradiance(g_on, latitud_local, ang_delta, ang_omega_
 
     daily_extraterrestrial_irradiance = (24 * 3600 / np.pi) * g_on * (
         np.cos(latitud_local_rad) * np.cos(ang_delta_rad) * np.sin(ang_omega_s_rad) +
-        (np.pi * ang_omega_s_rad / 180) * np.sin(latitud_local_rad) * np.sin(ang_delta_rad)
-    )  # Daily extraterrestrial horizontal irradiance [J/m2 day]
+        (ang_omega_s_rad) *
+        np.sin(latitud_local_rad) * np.sin(ang_delta_rad)
+    )
+
 
     return daily_extraterrestrial_irradiance
+
+
+if __name__ == '__main__':
+    print(daily_extraterrestrial_irradiance(30, 90, 100, 70))

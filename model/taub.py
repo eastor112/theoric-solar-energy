@@ -32,3 +32,7 @@ def sky_transmissivity(ang_theta_z, local_altitude):
     sky_transmissivity = a0 + a1 * np.exp(-kk / np.cos(np.deg2rad(ang_theta_z)))  # Sky transmissivity
 
     return sky_transmissivity
+
+
+if __name__ == '__main__':
+    print(sky_transmissivity(50, 80))
