@@ -11,7 +11,11 @@ def omega_angle(nn_x, nn_y):
     Returns:
     - omega_angle (float): The OMEGA angle [degrees].
     """
-    omega_angle = abs(np.arctan(nn_y / nn_x))
+    if(nn_x>0.0000000001):
+        omega_angle = abs(np.arctan(nn_y / nn_x))
+    else:
+        omega_angle = abs(np.arctan(nn_y / 0.0000000001))
+
     return np.degrees(omega_angle)
 
 if __name__ == '__main__':
