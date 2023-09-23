@@ -94,8 +94,4 @@ def get_pipe_energy(
 
   potencia_total_1t = potencia_haz_1t + potencia_difus_1t
 
-  print('TEST: ', np.trapz(hora_std, potencia_total_1t) / 1000)
-  print(hora_std)
-  print(potencia_total_1t)
-
-  return np.trapz(potencia_total_1t, hora_std) / 1000
+  return np.trapz(m.interpolate_nan_inf(potencia_total_1t), hora_std) / 1000

@@ -39,7 +39,7 @@ energia_diaria = np.zeros(365)
 for n in range(1, 366):
   dia = n
 
-  energia_total_1t = get_pipe_energy(
+  energia_diaria[n - 1] = get_pipe_energy(
     n,
     latitud_local,
     inclinacion,
@@ -52,8 +52,6 @@ for n in range(1, 366):
     s_sep,
     l_tubo
   )
-  print(n, energia_total_1t)
-  energia_diaria[n - 1] = energia_total_1t
 
 for n in range(1, 365):
     if np.isinf(energia_diaria[n]) or np.isnan(energia_diaria[n]):
