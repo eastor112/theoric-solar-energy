@@ -5,7 +5,6 @@ from energ_tubo import get_pipe_energy
 
 # DATOS GEOESPACIALES
 # ===================
-
 longitud_local = -79.0286  # Longitud (Trujillo).
 latitud_local = -8.11167   # Latitud Local (Trujillo), phi [deg].
 altitud_local = 33         # Altitud local (Trujillo) [m]
@@ -19,7 +18,6 @@ azimuth = 180               # Angulo de azimuth del colector, gamma [deg] (180 m
 
 # DATOS DEL TUBO AL VACIO (CONFIGURACION GEOMÉTRICA)
 # ===========================================
-
 d_int = 0.048   # Diametro interno del tubo al vacio [m]
 d_ext = 0.058   # Diametro externo del tubo al vacio [m]
 l_tubo = 1.80   # Longitud efectivo del tubo al vacio expuesto al sol [m]
@@ -28,8 +26,7 @@ s_sep = 0.116   # Distancia de separacion entre centro de tubos [m]
 
 # CONFIGURACION DE LA MATRIZ HORARIA
 # ==================================
-
-nn = 121        # Division de puntos que abarca todo el dia
+nn = 24        # Division de puntos que abarca todo el dia
 
 print("RESULTADOS DE ENERGIA DIARIA APROVECHADA EN 1 TUBO AL VACIO")
 print("============================================================\n")
@@ -52,10 +49,6 @@ for n in range(1, 366):
     s_sep,
     l_tubo
   )
-
-for n in range(1, 365):
-    if np.isinf(energia_diaria[n]) or np.isnan(energia_diaria[n]):
-        energia_diaria[n] = (energia_diaria[n - 1] + energia_diaria[n + 1]) / 2
 
 dia_col = np.arange(1, 366).reshape(-1, 1)  # Vector que estima el dia
 energia_diaria_col = energia_diaria.reshape(-1, 1)
